@@ -1,5 +1,4 @@
 const { createServer } = require('node:http');
-const url = require('url');
 
 const port = 3006;
 
