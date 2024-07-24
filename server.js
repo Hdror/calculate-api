@@ -1,9 +1,9 @@
 const { createServer } = require('node:http');
 const jwt = require('jsonwebtoken');
-const port = 3006;
+const port = 3009;
 const secretKey = 'xR1jlcGiyWHsR2JoSEOAsg8mMFaLTmStQLdUHqu6CRu4ITA3FfScJAhYSplFEAxb'
-// const token = jwt.sign({ userId: '123' }, secretKey, { expiresIn: '1m' });
-// console.log(token);
+const token = jwt.sign({ userId: '123' }, secretKey, { expiresIn: '1h' });
+console.log(token);
 const server = createServer((req, res) => {
     if (req.method === 'POST' && req.url === '/calculate') {
         let reqBody = ''
@@ -41,7 +41,7 @@ const server = createServer((req, res) => {
             if (!reqToken) {
                 res.writeHead(403, { 'Content-Type': 'application/json' });
                 return res.end(JSON.stringify({ error: 'No token provided' }));
-            }
+            };
 
             // Extract JWT from Authorization header
             reqToken = reqToken.split(' ')[1]
